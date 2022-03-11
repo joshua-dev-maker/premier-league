@@ -17,7 +17,7 @@ const authenticate = async (req, res, next) => {
         message: "Token is required",
       });
     }
-    const decryptToken = await jwt.verify(token, process.env.SECRET_TOKEN, {
+    const decryptToken = await jwt.verify(token, process.env.TOKEN, {
       expiresIn: "1h",
     });
     req.user = decryptToken;
