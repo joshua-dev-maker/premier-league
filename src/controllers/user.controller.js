@@ -88,7 +88,7 @@ const loginUser = async (req, res, next) => {
       role: emailExist.role,
     };
 
-    const token = await jwt.sign(data, process.env.SECRET_TOKEN, {
+    const token = await jwt.sign(data, process.env.TOKEN, {
       expiresIn: "2h",
     });
     return res.status(200).json({
