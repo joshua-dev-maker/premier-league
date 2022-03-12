@@ -1,14 +1,6 @@
 const mongoose = require("mongoose");
 const Fixtures = mongoose.Schema;
 
-// const Team = {
-//   type: mongoose.Schema.Types.ObjectId,
-//   ref: "Team",
-//   name: {
-//     type: String,
-//   },
-//   score: { type: Number, default: 0 },
-// };
 
 const FixtureSchema = new Fixtures(
   {

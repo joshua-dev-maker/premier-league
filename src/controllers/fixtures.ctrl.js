@@ -7,6 +7,7 @@ const CreateFixtures = async (req, res, next) => {
       return res.status(400).json({
         message: "fill in required fields",
       });
+
     const CreateFixtures = await Fixtures.create({
       stadium,
       teams: id,
@@ -51,22 +52,9 @@ const viewFixtures = async (req, res, next) => {
       teamName: 1,
       _id: 0,
     });
-    // console.log(viewFixture[0].teams)
-    const viewAllFixtures = [];
-    for (fixture of viewFixture) {
-      if (fixture) {
-        const [team1, team2] = fixture.teams;
-        const home_Team = team1.teamName;
-        const away_Team = team2.teamName;
-        // console.log(home_Team);
-        // console.log(away_Team);
-        const newFixture = `${home_Team} vs ${away_Team}`;
-        viewAllFixtures.push(newFixture);
-      }
-    }
-    // console.log(viewAllFixtures);
     return res.status(200).json({
-      viewAllFixtures,
+      message: "success",
+      viewFixture,
     });
   } catch (error) {
     return res.status(500).json({
@@ -94,28 +82,14 @@ const completedFixtures = async (req, res, next) => {
       teamName: 1,
       _id: 0,
     });
-    console.log(allCompletedFixs);
+    
     for (allCompletedFix of allCompletedFixs) {
       if (allCompletedFix.status === "completed") {
         completedFixts.push(allCompletedFix);
       }
     }
-
-    const viewCompletedFixtures = [];
-    for (fixture of completedFixts) {
-      if (fixture) {
-        const [team1, team2] = fixture.teams;
-        const home_Team = team1.teamName;
-        const away_Team = team2.teamName;
-        // console.log(home_Team);
-        // console.log(away_Team);
-        const newFixture = `${home_Team} vs ${away_Team}`;
-        viewCompletedFixtures.push(newFixture);
-      }
-    }
-    console.log(viewCompletedFixtures);
     return res.status(200).json({
-      viewCompletedFixtures,
+      completedFixts,
     });
   } catch (error) {
     return res.status(500).json({
@@ -137,18 +111,8 @@ const pendingFixtures = async (req, res, next) => {
         pendingFixts.push(pendingFix);
       }
     }
-    const viewPendingFixtures = [];
-    for (fixture of pendingFixts) {
-      if (fixture) {
-        const [team1, team2] = fixture.teams;
-        const home_Team = team1.teamName;
-        const away_Team = team2.teamName;
-        const newFixture = `${home_Team} vs ${away_Team}`;
-        viewPendingFixtures.push(newFixture);
-      }
-    }
     return res.status(200).json({
-      viewPendingFixtures,
+      pendingFixts,
     });
   } catch (error) {
     return res.status(500).json({
